@@ -31,11 +31,10 @@
                 <?php
                 // Ambil data matkul dari database
                 include 'koneksi.php';
-                $result = $koneksi->query("SELECT matkul.id, matkul.nama, matkul.id_sks 
-                                            FROM matkul ");
+                $result = $koneksi->query("SELECT matkul.*, sks.jml_sks FROM matkul INNER JOIN sks ON matkul.id_sks = sks.id ");
 
                 while ($row = $result->fetch_assoc()) {
-                    echo "<option value='{$row['id']}' data-sks='{$row['id_sks']}'>{$row['nama']}</option>";
+                    echo "<option value='{$row['id']}' data-sks='{$row['jml_sks']}'>{$row['nama']}</option>";
                 }
 
                 $koneksi->close();
